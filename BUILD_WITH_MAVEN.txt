@@ -1,0 +1,36 @@
+Build MegaStocks with Maven + JDK 21
+===================================
+
+1. Install JDK 21.
+   - Windows: Temurin 21 or Oracle/OpenJDK 21 is fine.
+   - Make sure JAVA_HOME points to your JDK 21 folder.
+
+2. Install Maven.
+
+3. Open a terminal inside this MegaStocksPlugin folder.
+
+4. Check versions:
+
+   java -version
+   mvn -version
+
+   Java should show version 21.
+   Maven should show it is using Java 21.
+
+5. Build:
+
+   mvn clean package
+
+6. Your plugin jar will be created here:
+
+   target/MegaStocksPlugin-4.3.0.jar
+
+7. Put that jar in your Paper server's plugins folder.
+
+8. Also install these server plugins:
+   - Vault
+   - A Vault-compatible economy plugin, such as EssentialsX Economy
+
+9. Restart the server and test:
+
+   /megastocks

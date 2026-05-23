@@ -1,0 +1,105 @@
+# MegaStocks - fake stocks, fake crypto mining, IRL-style hardware, Vault economy.
+# Nothing here mines real crypto. This is only gameplay simulation.
+
+economy:
+  require-vault-for-purchases: true
+  starting-fake-btc: 0.0
+  btc-sell-price: 31500.0
+  btc-sell-price-randomness-percent: 2.0
+
+# Optional staff price overrides. Leave missing to use built-in balanced prices.
+# Change live with:
+# /mega admin price machine <id> <price>
+# /mega admin price hardware <id> <price>
+# /mega admin price bitcoin <price>
+prices:
+  machines: {}
+  hardware: {}
+
+performance:
+  # One central simulation loop. No per-machine repeating tasks.
+  simulation-interval-seconds: 10
+  market-update-seconds: 60
+  autosave-seconds: 300
+  max-machines-server: 10000
+  max-machines-per-player: 250
+  max-machine-gui-list: 45
+
+machine:
+  # Wires/pipes are easy: place them in an area to automatically boost power/cooling for that area.
+  # No redstone network math or per-block ticking is used, so TPS stays safer.
+  # Server Cooling Block / Cryo Server Block / Liquid Nitrogen Block / Area Frost Beacon
+  # are huge area coolers. Admins can give them with /mega give <id>.
+  # If true, normal players can mine/break other players' MegaStocks machines and steal them.
+  # If false, only the owner or admins with megastocks.break.other/megastocks.admin can break them.
+  allow-player-stealing: true
+  notify-owner-on-steal: true
+  overheat-at: 100.0
+  warning-heat-at: 75.0
+  passive-cooldown-per-tick: 2.0
+  heat-scale: 1.0
+  power-deficit-production-multiplier: 0.25
+  cooling-deficit-heat-multiplier: 2.0
+
+market:
+  # Staff can add/remove/set stocks with /mega admin stock create/set/remove.
+  # The stock GUI uses pages, so big servers can list many server-made stocks.
+  min-stock-price: 1.0
+  max-stock-price: 1000000.0
+  default-buy-amount: 1
+  shift-buy-amount: 10
+  random-walk-percent: 4.0
+  event-chance-percent: 12.0
+
+anti-cheat:
+  # Keeps MegaStocks items from being converted into vanilla resources.
+  # Example: a MegaStocks machine that visually uses a strong block cannot be crafted/smithed/smelted into vanilla profit.
+  # Also blocks vanilla Crafters/hoppers from using MegaStocks items as ingredients.
+  protect-megastocks-items: true
+
+compatibility:
+  # Geyser/Bedrock players can use these simple backup commands if inventory clicking feels weird:
+  # /mega install [gpu|cpu|ram|motherboard|psu|storage|network|cooling]
+  # /mega remove <gpu|cpu|ram|motherboard|psu|storage|network|cooling>
+  # /mega repair
+  # /mega pickup
+  bedrock-friendly-commands: true
+
+messages:
+  prefix: '&8[&6MegaStocks&8] &r'
+
+hacking:
+  # This is fake in-game hacking only. It never touches real accounts, networks, crypto, or computers.
+  # Default is OFF. Admins/ops can enable with /mega hacking on.
+  enabled: false
+  # Internal migration flag: v3.8 turns hacking off once on upgrade, then respects admin toggles after that.
+  defaulted-off-v38: true
+  notify-target: true
+  cooldown-seconds: 900
+  minimum-attack-power: 5000.0
+  minimum-attack-to-security-ratio: 0.55
+  minimum-success-chance: 0.05
+  maximum-success-chance: 0.70
+  min-steal-percent: 0.03
+  max-steal-percent: 0.35
+  max-steal-btc: 2.0
+  base-security: 350.0
+  bank-vault-security: 2500.0
+  security-per-wallet-btc: 900.0
+  security-per-code-strength: 65.0
+  code-defense-multiplier: 125.0
+  wallet-hack-heat-cost: 80.0
+  code-hack-heat-cost: 650.0
+  code-hack-minimum-attack-power: 85000.0
+  code-hack-minimum-attack-to-security-ratio: 1.65
+  code-hack-minimum-success-chance: 0.01
+  code-hack-maximum-success-chance: 0.18
+  code-hack-min-steal-percent: 0.20
+  code-hack-max-steal-percent: 0.85
+  code-hack-max-steal-btc: 25.0
+
+areas:
+  # Areas are player-created with /mega area create <name>.
+  # New machines go into the player's active area.
+  # Area monitor stations can be linked with /mega area station <name|all>.
+  enabled: true

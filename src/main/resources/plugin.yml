@@ -1,0 +1,51 @@
+name: MegaStocks
+version: ${project.version}
+main: com.weston.megastocks.MegaStocksPlugin
+api-version: '1.21'
+author: westonshiner085
+softdepend: [Vault, Geyser-Spigot, floodgate]
+load: POSTWORLD
+commands:
+  mega:
+    description: Main MegaStocks command.
+    usage: /megastocks
+    aliases: [megastocks, stocks, crypto, mining]
+  code:
+    description: View or set your private fake BTC wallet code.
+    usage: /code
+    aliases: [btccode, walletcode]
+  gift:
+    description: Gift MegaStocks fake BTC, shares, or held MegaStocks items.
+    usage: /gift <player> <btc>
+    aliases: [giftbtc, megagift]
+  add:
+    description: Admin add MegaStocks fake BTC.
+    usage: /add bitcoin <player> <amount>
+  take:
+    description: Admin take MegaStocks fake BTC.
+    usage: /take bitcoin <player> <amount>
+permissions:
+  megastocks.admin:
+    description: Allows admin commands for MegaStocks.
+    default: op
+  megastocks.use:
+    description: Allows using MegaStocks commands and machines.
+    default: true
+  megastocks.break.other:
+    description: Allows breaking other players' MegaStocks machines even when stealing is disabled.
+    default: op
+  megastocks.stealing.toggle:
+    description: Allows toggling player machine stealing with /mega stealing.
+    default: op
+  megastocks.hacking.use:
+    description: Allows using the simulated wallet hacking gameplay.
+    default: true
+  megastocks.hacking.toggle:
+    description: Allows toggling simulated wallet hacking with /mega hacking.
+    default: op
+  megastocks.compat.commands:
+    description: Allows Geyser/Bedrock-friendly backup commands like install/remove/pickup/repair.
+    default: true
+  megastocks.gift:
+    description: Allows players to gift fake BTC, shares, and MegaStocks items.
+    default: true
